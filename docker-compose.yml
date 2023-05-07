@@ -1,0 +1,13 @@
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - /appp/.next
+      - /home/$USER/videos:/app/public/media
+    working_dir: /app
