@@ -11,8 +11,9 @@ interface IFilesGroup {
 function GetFiles(path: string): IFilesGroup {
   var files = fs.readdirSync(path);
   // gruop files by extension
-  var groupedFiles: IFilesGroup = files.reduce((r: any, e: any) => {
-    let ext = e.split('.')[1];
+  const groupedFiles: IFilesGroup = files.reduce((r: any, e: any) => {
+    // get extension with regex
+    let ext = `${e}`.match(/[^.]+.?(\w+)$/)[1];
     if (!r[ext]) {
       r[ext] = [];
     }
@@ -23,8 +24,10 @@ function GetFiles(path: string): IFilesGroup {
         if (!r[key]) {
           r[key] = [];
         }
-        r[key] = r[key].concat(`${children[key]}`);
-        console.log(r[key]);
+        // r[key] = r[key].concat(children[key]);
+        children[key].forEach((element: string) => {
+          r[key].push(element);
+        });
       }
     } else {
       r[ext].push(`${path}/${e}`);

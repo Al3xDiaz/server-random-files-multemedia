@@ -8,6 +8,6 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
-      - /appp/.next
-      - /home/$USER/videos:/app/public/media
+      - /app/.next
+      - ${FILES_MEDIA_PATH-/home/$USER/videos}:/app/public/media
     working_dir: /app

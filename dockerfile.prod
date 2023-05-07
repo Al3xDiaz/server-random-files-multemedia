@@ -1,0 +1,18 @@
+FROM node:16.14.0-alpine3.14 as builder
+WORKDIR /app-build
+COPY ["package.json", "yarn.lock", "./"]
+RUN yarn install --production=false 
+COPY . .
+RUN yarn build
+
+FROM node:16.14.0-alpine3.14 as runner
+ENV NODE_ENV=production
+EXPOSE 3000
+USER node
+RUN chown -R node:node /home/node
+WORKDIR /app
+COPY --from=builder --chown=node:node ["/app-build/package.json", "/app-build/yarn.lock", "./"]
+RUN yarn install --production=true
+COPY --from=builder --chown=node:node /app-build/dist ./dist
+ENTRYPOINT [ "cross-env" ]
+CMD [ "node", "dist/server.js" ]
