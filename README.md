@@ -8,8 +8,8 @@ docker run -it --rm -v $FILES_MEDIA_PATH:/app/public/media -p 80:3000 ghcr.io/al
 
 ## run server with docker compose
 
-### docker compose file
 ```yaml
+# ./docker-compose.yml
 version: '3.7'
 services:
   server:
