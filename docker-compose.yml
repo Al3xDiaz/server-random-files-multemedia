@@ -1,5 +1,6 @@
 services:
   app:
+    image: ghcr.io/al3xdiaz/server-random-files-multemedia
     build: 
       context: .
       dockerfile: dockerfile
