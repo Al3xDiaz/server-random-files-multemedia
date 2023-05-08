@@ -46,8 +46,10 @@ export function MigrateDatabase() {
     if (Object.prototype.hasOwnProperty.call(files, key)) {
       const element = files[key];
       element.forEach((file: string) => {
-        if (!!key)
-        db.run(`INSERT INTO media (path, type) VALUES ('${file}', '${key}')`);
+        if (!!key){
+          let file_path = file.replace('/app/public', '');
+          db.run(`INSERT INTO media (path, type) VALUES ('${file_path}', '${key}')`);
+        }
       });
     }
   }

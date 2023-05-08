@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/al3xdiaz/server-random-files-multemedia
+    image: ghcr.io/al3xdiaz/server-random-files-multemedia:latest
     build: 
       context: .
       dockerfile: dockerfile
@@ -12,3 +12,4 @@ services:
       - /app/.next
       - ${FILES_MEDIA_PATH-/home/$USER/videos}:/app/public/media
     working_dir: /app
+    restart: unless-stopped
