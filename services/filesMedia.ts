@@ -13,7 +13,7 @@ function GetFiles(path: string): IFilesGroup {
   // gruop files by extension
   const groupedFiles: IFilesGroup = files.reduce((r: any, e: any) => {
     // get extension with regex
-    let ext = `${e}`.match(/[^.]+.?(\w+)$/)[1];
+    let ext = `${e}`.match(/([^.]+)$/)[1];
     if (!r[ext]) {
       r[ext] = [];
     }
