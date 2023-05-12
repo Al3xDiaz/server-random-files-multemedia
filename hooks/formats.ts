@@ -9,7 +9,7 @@ const useFormats = () => {
     const  [formats, setFormats] = useState<IFormat[]>([]);
 
     const getFormats = useCallback(async () => {
-        const response = await fetch("http://localhost:3000/api/formats");
+        const response = await fetch("/api/formats");
         const json:ISuccessResponse = await response.json();
         setFormats(json.data);
     }

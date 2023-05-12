@@ -10,7 +10,7 @@ export const useFiles = (format:string) => {
     const  [files, setFiles] = useState<IFile[]>([]);
 
     const getFiles = useCallback(async () => {
-        const response = await fetch(`http://localhost:3000/api/file/${format}`);
+        const response = await fetch(`/api/file/${format}`);
         const json:ISuccessResponse = await response.json();
         setFiles(json.data);
     }
